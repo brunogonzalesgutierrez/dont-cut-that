@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://dv3xx8u4vetc6"]
+
+[ext_resource type="Texture2D" uid="uid://cvrsrhpgh1x1o" path="res://media/menu/fondo.png" id="1_u4dsd"]
+[ext_resource type="Script" uid="uid://cq0xcm7jvlmy1" path="res://controls/salir.gd" id="2_kb5l1"]
+
+[node name="Control" type="Control" unique_id=382212308]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1922030790]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_u4dsd")
+expand_mode = 1
+
+[node name="nuevapartida" type="Button" parent="TextureRect" unique_id=1894970499]
+layout_mode = 0
+offset_left = 810.0
+offset_top = 417.0
+offset_right = 1110.0
+offset_bottom = 487.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "Nueva Partida"
+
+[node name="continuar" type="Button" parent="TextureRect" unique_id=726621209]
+layout_mode = 0
+offset_left = 810.0
+offset_top = 503.0
+offset_right = 1110.0
+offset_bottom = 573.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "Continuar"
+
+[node name="ajustes" type="Button" parent="TextureRect" unique_id=1050773604]
+layout_mode = 0
+offset_left = 810.0
+offset_top = 587.0
+offset_right = 1110.0
+offset_bottom = 657.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "Ajustes"
+
+[node name="estadisticas" type="Button" parent="TextureRect" unique_id=1375482077]
+layout_mode = 0
+offset_left = 810.0
+offset_top = 672.0
+offset_right = 1110.0
+offset_bottom = 742.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "Estadisticas"
+
+[node name="salir" type="Button" parent="TextureRect" unique_id=958241651]
+layout_mode = 0
+offset_left = 810.0
+offset_top = 758.0
+offset_right = 1110.0
+offset_bottom = 828.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "Salir"
+script = ExtResource("2_kb5l1")
