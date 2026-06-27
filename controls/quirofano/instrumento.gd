@@ -16,11 +16,11 @@ signal instrumento_usado(nombre: String)
 ## Nombre interno del instrumento (bisturi, pinzas, aspirador, etc.).
 @export var nombre_instrumento: String = "bisturi"
 
-## Color del instrumento en reposo (gris plateado metálico).
-@export var color_normal: Color = Color(0.69, 0.72, 0.69)
+## Color base del instrumento
+@export var color_normal: Color = Color.WHITE
 
-## Color del instrumento al pasar el mouse por encima.
-@export var color_hover: Color = Color(0.8, 0.85, 0.8)
+## Color del instrumento al pasar el mouse por encima (brillo).
+@export var color_hover: Color = Color(1.2, 1.2, 1.2)
 
 # --- Variables internas ---
 
@@ -35,8 +35,8 @@ var posicion_original: Vector2 = Vector2.ZERO
 
 # --- Referencias ---
 
-## Representación visual del instrumento (un ColorRect simple).
-@onready var sprite: ColorRect = $Visual
+## Representación visual del instrumento (Sprite2D).
+@onready var sprite: Sprite2D = $Sprite
 
 
 func _ready() -> void:
@@ -44,7 +44,7 @@ func _ready() -> void:
 	posicion_original = global_position
 
 	# Configurar el color inicial
-	sprite.color = color_normal
+	sprite.modulate = color_normal
 
 	# Conectar señales de mouse para efecto hover
 	mouse_entered.connect(_on_mouse_entered)
@@ -104,13 +104,13 @@ func _input(event: InputEvent) -> void:
 ## Efecto visual: mouse entra sobre el instrumento.
 func _on_mouse_entered() -> void:
 	if not arrastrando:
-		sprite.color = color_hover
+		sprite.modulate = color_hover
 
 
 ## Efecto visual: mouse sale del instrumento.
 func _on_mouse_exited() -> void:
 	if not arrastrando:
-		sprite.color = color_normal
+		sprite.modulate = color_normal
 
 
 ## Anima el instrumento de regreso a su posición original con un tween.

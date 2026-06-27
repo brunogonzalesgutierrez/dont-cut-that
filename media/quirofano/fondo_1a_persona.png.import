@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ck8dp3tad8dbs"
-path="res://.godot/imported/equipamiento_sprites.png-64dd486d232c605982b55d531847a539.ctex"
+uid="uid://v4oib7moaqve"
+path="res://.godot/imported/fondo_1a_persona.png-17fb696ee5eaaf4b7d01010ec5eb4f2c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://media/quirofano/equipamiento_sprites.png"
-dest_files=["res://.godot/imported/equipamiento_sprites.png-64dd486d232c605982b55d531847a539.ctex"]
+source_file="res://media/quirofano/fondo_1a_persona.png"
+dest_files=["res://.godot/imported/fondo_1a_persona.png-17fb696ee5eaaf4b7d01010ec5eb4f2c.ctex"]
 
 [params]
 

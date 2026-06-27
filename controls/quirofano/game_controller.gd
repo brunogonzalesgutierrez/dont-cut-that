@@ -61,12 +61,31 @@ var instrumento_correcto: String = ""
 ## Tiempo restante de la cirugía (se decrementa en _process).
 var _tiempo_restante: float = 0.0
 
-
+# --- Variables de cursor y paciente ---
+var cursor_sprite: Sprite2D
+var tex_mano_abierta: Texture2D
+var tex_mano_cerrada: Texture2D
 # --- Funciones del ciclo de vida ---
 
 func _ready() -> void:
-	# Activar hitboxes visibles para debug
-	get_tree().debug_collisions_hint = true
+	# Ocultar cursor del sistema y configurar cursor personalizado de Sprite2D
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	tex_mano_abierta = load("res://media/manos/mano_abierta.png")
+	tex_mano_cerrada = load("res://media/manos/mano_cerrada.png")
+	
+	var cursor_layer = CanvasLayer.new()
+	cursor_layer.layer = 128
+	add_child(cursor_layer)
+	
+	cursor_sprite = Sprite2D.new()
+	cursor_sprite.texture = tex_mano_abierta
+	cursor_layer.add_child(cursor_sprite)
+	
+	# Seleccionar paciente aleatorio
+	var sprite_paciente: Sprite2D = %SpritePaciente
+	var rand_index = randi() % 3 + 1
+	var tex_paciente = load("res://media/quirofano/paciente_%d.png" % rand_index)
+	sprite_paciente.texture = tex_paciente
 
 	# Conectar señales de los nodos hijos
 	expediente_popup.expediente_cerrado.connect(_on_expediente_cerrado)
@@ -76,7 +95,7 @@ func _ready() -> void:
 	zona_paciente.add_to_group("zona_paciente")
 
 	# Conectar señales de cada instrumento
-	var instrumentos: Array[String] = ["Bisturi", "Pinzas", "Tijeras", "Aspirador", "Retractor", "Sutura"]
+	var instrumentos: Array[String] = ["Bisturi", "Pinzas", "Tijeras", "Aspirador", "Retractor", "Sutura", "Gasa"]
 	for instrumento_name: String in instrumentos:
 		var instrumento_node: Node = owner.get_node("%" + instrumento_name)
 		if instrumento_node and instrumento_node.has_signal("instrumento_usado"):
@@ -91,6 +110,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if cursor_sprite:
+		cursor_sprite.global_position = get_viewport().get_mouse_position()
+
 	if estado_actual != Estado.CIRUGIA:
 		return
 
@@ -113,6 +135,10 @@ func _process(delta: float) -> void:
 	elif _tiempo_restante < 60.0:
 		timer_display.add_theme_color_override("font_color", Color.YELLOW)
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if cursor_sprite:
+			cursor_sprite.texture = tex_mano_cerrada if event.pressed else tex_mano_abierta
 
 # --- Flujo principal ---
 

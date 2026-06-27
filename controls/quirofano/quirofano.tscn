@@ -1,32 +1,26 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://controls/quirofano/game_controller.gd" id="1"]
 [ext_resource type="Script" path="res://controls/quirofano/monitor_ecg.gd" id="2"]
 [ext_resource type="Script" path="res://controls/quirofano/instrumento.gd" id="3"]
 [ext_resource type="Script" path="res://controls/quirofano/expediente_popup.gd" id="4"]
-[ext_resource type="Texture2D" path="res://media/quirofano/fondo_quirofano.png" id="6"]
-[ext_resource type="Texture2D" path="res://media/quirofano/equipamiento_sprites.png" id="7"]
-
-[sub_resource type="RectangleShape2D" id="SubResource_1"]
-size = Vector2(20, 35)
-
-[sub_resource type="RectangleShape2D" id="SubResource_2"]
-size = Vector2(25, 30)
-
-[sub_resource type="RectangleShape2D" id="SubResource_3"]
-size = Vector2(30, 28)
-
-[sub_resource type="RectangleShape2D" id="SubResource_4"]
-size = Vector2(28, 32)
-
-[sub_resource type="RectangleShape2D" id="SubResource_5"]
-size = Vector2(22, 28)
-
-[sub_resource type="RectangleShape2D" id="SubResource_6"]
-size = Vector2(18, 25)
+[ext_resource type="Texture2D" path="res://media/quirofano/fondo_1a_persona.png" id="img_fondo"]
+[ext_resource type="Texture2D" path="res://media/quirofano/mesa_paciente.png" id="img_mesa_paciente"]
+[ext_resource type="Texture2D" path="res://media/quirofano/mesa_instrumentos.png" id="img_mesa_inst"]
+[ext_resource type="Texture2D" path="res://media/quirofano/monitor_crt.png" id="img_monitor"]
+[ext_resource type="Texture2D" path="res://media/quirofano/bisturi.png" id="img_bisturi"]
+[ext_resource type="Texture2D" path="res://media/quirofano/pinzas.png" id="img_pinzas"]
+[ext_resource type="Texture2D" path="res://media/quirofano/tijeras.png" id="img_tijeras"]
+[ext_resource type="Texture2D" path="res://media/quirofano/aspirador.png" id="img_aspirador"]
+[ext_resource type="Texture2D" path="res://media/quirofano/retractor.png" id="img_retractor"]
+[ext_resource type="Texture2D" path="res://media/quirofano/sutura.png" id="img_sutura"]
+[ext_resource type="Texture2D" path="res://media/quirofano/gasa.png" id="img_gasa"]
 
 [sub_resource type="RectangleShape2D" id="SubResource_7"]
-size = Vector2(300, 65)
+size = Vector2(500, 300)
+
+[sub_resource type="RectangleShape2D" id="SubResource_Inst"]
+size = Vector2(80, 80)
 
 [sub_resource type="StyleBoxFlat" id="SubResource_8"]
 bg_color = Color(0.15, 0.13, 0.1, 0.95)
@@ -54,587 +48,188 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+
 [node name="Quirofano" type="Node2D"]
 
 [node name="Escenario" type="Node2D" parent="."]
 
-[node name="Pared" type="ColorRect" parent="Escenario"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 1920.0
-offset_bottom = 650.0
-color = Color(0.831, 0.773, 0.627, 1)
-
-[node name="Zocalo" type="ColorRect" parent="Escenario"]
-offset_left = 0.0
-offset_top = 650.0
-offset_right = 1920.0
-offset_bottom = 720.0
-color = Color(0.545, 0.659, 0.557, 1)
-
-[node name="Piso" type="ColorRect" parent="Escenario"]
-offset_left = 0.0
-offset_top = 720.0
+[node name="Fondo" type="TextureRect" parent="Escenario"]
 offset_right = 1920.0
 offset_bottom = 1080.0
-color = Color(0.592, 0.659, 0.6, 1)
+texture = ExtResource("img_fondo")
+expand_mode = 1
 
-[node name="PosterMedico" type="ColorRect" parent="Escenario"]
-offset_left = 30.0
-offset_top = 100.0
-offset_right = 130.0
-offset_bottom = 220.0
-color = Color(0.961, 0.902, 0.8, 1)
-
-[node name="PosterTexto" type="Label" parent="Escenario/PosterMedico"]
-offset_left = 5.0
-offset_top = 10.0
-offset_right = 95.0
-offset_bottom = 110.0
-text = "MEDICAL
-PROCEDURES
-
-1. Wash hands
-2. Don't panic
-3. Pray"
-theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
-theme_override_font_sizes/font_size = 8
-
-[node name="EquipoMedico" type="Node2D" parent="Escenario"]
-position = Vector2(0, 0)
-
-[node name="MonitorECG" type="Node2D" parent="Escenario/EquipoMedico"]
+[node name="MesaOperaciones" type="TextureRect" parent="Escenario"]
 unique_name_in_owner = true
-position = Vector2(100, 250)
-script = ExtResource("2")
+offset_left = 610.0
+offset_top = 480.0
+offset_right = 1460.0
+offset_bottom = 1080.0
+texture = ExtResource("img_mesa_paciente")
+expand_mode = 1
 
-[node name="CuerpoMonitor" type="ColorRect" parent="Escenario/EquipoMedico/MonitorECG"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 200.0
-offset_bottom = 180.0
-color = Color(0.541, 0.541, 0.502, 1)
-
-[node name="PantallaMonitor" type="ColorRect" parent="Escenario/EquipoMedico/MonitorECG"]
-offset_left = 15.0
-offset_top = 15.0
-offset_right = 185.0
-offset_bottom = 115.0
-color = Color(0.102, 0.227, 0.165, 1)
-
-[node name="LineaECG" type="Line2D" parent="Escenario/EquipoMedico/MonitorECG"]
-points = PackedVector2Array(15, 65, 40, 65, 50, 65, 60, 45, 65, 85, 70, 55, 75, 65, 100, 65, 120, 65, 130, 45, 135, 85, 140, 55, 145, 65, 170, 65, 185, 65)
-width = 2.0
-default_color = Color(0.2, 1.0, 0.4, 1)
-
-[node name="LabelBPM" type="Label" parent="Escenario/EquipoMedico/MonitorECG"]
-offset_left = 15.0
-offset_top = 120.0
-offset_right = 185.0
-offset_bottom = 150.0
-text = "72 BPM"
-theme_override_colors/font_color = Color(0.2, 1.0, 0.4, 1)
-theme_override_font_sizes/font_size = 18
-horizontal_alignment = 1
-
-[node name="BotonesMonitor" type="ColorRect" parent="Escenario/EquipoMedico/MonitorECG"]
-offset_left = 20.0
-offset_top = 155.0
-offset_right = 60.0
-offset_bottom = 170.0
-color = Color(0.4, 0.4, 0.35, 1)
-
-[node name="MaquinaAnestesia" type="ColorRect" parent="Escenario/EquipoMedico"]
-offset_left = 80.0
-offset_top = 450.0
-offset_right = 280.0
-offset_bottom = 680.0
-color = Color(0.541, 0.541, 0.502, 1)
-
-[node name="PanelMaquina" type="ColorRect" parent="Escenario/EquipoMedico/MaquinaAnestesia"]
-offset_left = 15.0
-offset_top = 15.0
-offset_right = 185.0
-offset_bottom = 80.0
-color = Color(0.3, 0.35, 0.3, 1)
-
-[node name="LabelAnestesia" type="Label" parent="Escenario/EquipoMedico/MaquinaAnestesia"]
-offset_left = 10.0
-offset_top = 85.0
-offset_right = 190.0
-offset_bottom = 105.0
-text = "ANESTESIA"
-theme_override_colors/font_color = Color(0.8, 0.8, 0.7, 1)
-theme_override_font_sizes/font_size = 10
-horizontal_alignment = 1
-
-[node name="SueroBolsa" type="ColorRect" parent="Escenario/EquipoMedico"]
-offset_left = 50.0
-offset_top = 100.0
-offset_right = 100.0
-offset_bottom = 230.0
-color = Color(0.85, 0.9, 0.95, 0.7)
-
-[node name="IconoSuero" type="Label" parent="Escenario/EquipoMedico/SueroBolsa"]
-offset_left = 0.0
-offset_top = 40.0
-offset_right = 50.0
-offset_bottom = 60.0
-text = "🩸"
-horizontal_alignment = 1
-
-[node name="LabelSuero" type="Label" parent="Escenario/EquipoMedico/SueroBolsa"]
-offset_left = 0.0
-offset_top = 60.0
-offset_right = 50.0
-offset_bottom = 80.0
-theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
-theme_override_font_sizes/font_size = 10
-text = "Suero IV"
-horizontal_alignment = 1
-
-[node name="SueroTubo" type="Line2D" parent="Escenario/EquipoMedico"]
-points = PackedVector2Array(75, 230, 75, 300, 200, 400)
-width = 2.0
-default_color = Color(0.7, 0.8, 0.85, 0.5)
-
-[node name="MesaInstrumentos" type="Node2D" parent="Escenario"]
-position = Vector2(450, 480)
-
-[node name="SuperficieMesa" type="ColorRect" parent="Escenario/MesaInstrumentos"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 320.0
-offset_bottom = 30.0
-color = Color(0.69, 0.722, 0.69, 1)
-
-[node name="PataMesa1" type="ColorRect" parent="Escenario/MesaInstrumentos"]
-offset_left = 20.0
-offset_top = 30.0
-offset_right = 30.0
-offset_bottom = 200.0
-color = Color(0.5, 0.5, 0.5, 1)
-
-[node name="PataMesa2" type="ColorRect" parent="Escenario/MesaInstrumentos"]
-offset_left = 290.0
-offset_top = 30.0
-offset_right = 300.0
-offset_bottom = 200.0
-color = Color(0.5, 0.5, 0.5, 1)
-
-[node name="Bisturi" type="Area2D" parent="Escenario/MesaInstrumentos"]
+[node name="ZonaPaciente" type="Area2D" parent="Escenario/MesaOperaciones" groups=["zona_paciente"]]
 unique_name_in_owner = true
-position = Vector2(25, -30)
-input_pickable = true
-monitorable = true
-monitoring = true
-script = ExtResource("3")
-nombre_instrumento = "bisturi"
-
-[node name="Visual" type="ColorRect" parent="Escenario/MesaInstrumentos/Bisturi"]
-offset_left = -15.0
-offset_top = -20.0
-offset_right = 15.0
-offset_bottom = 20.0
-color = Color(0.69, 0.722, 0.69, 1)
-
-[node name="Icono" type="Label" parent="Escenario/MesaInstrumentos/Bisturi/Visual"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 30.0
-offset_bottom = 40.0
-text = "🔪"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Nombre" type="Label" parent="Escenario/MesaInstrumentos/Bisturi"]
-offset_left = -30.0
-offset_top = 22.0
-offset_right = 30.0
-offset_bottom = 38.0
-theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
-theme_override_font_sizes/font_size = 10
-text = "Bisturí"
-horizontal_alignment = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Escenario/MesaInstrumentos/Bisturi"]
-shape = SubResource("SubResource_1")
-
-[node name="Pinzas" type="Area2D" parent="Escenario/MesaInstrumentos"]
-unique_name_in_owner = true
-position = Vector2(75, -25)
-input_pickable = true
-monitorable = true
-monitoring = true
-script = ExtResource("3")
-nombre_instrumento = "pinzas"
-
-[node name="Visual" type="ColorRect" parent="Escenario/MesaInstrumentos/Pinzas"]
-offset_left = -15.0
-offset_top = -20.0
-offset_right = 15.0
-offset_bottom = 20.0
-color = Color(0.69, 0.722, 0.69, 1)
-
-[node name="Icono" type="Label" parent="Escenario/MesaInstrumentos/Pinzas/Visual"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 30.0
-offset_bottom = 40.0
-text = "🥢"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Nombre" type="Label" parent="Escenario/MesaInstrumentos/Pinzas"]
-offset_left = -30.0
-offset_top = 22.0
-offset_right = 30.0
-offset_bottom = 38.0
-theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
-theme_override_font_sizes/font_size = 10
-text = "Pinzas"
-horizontal_alignment = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Escenario/MesaInstrumentos/Pinzas"]
-shape = SubResource("SubResource_2")
-
-[node name="Tijeras" type="Area2D" parent="Escenario/MesaInstrumentos"]
-unique_name_in_owner = true
-position = Vector2(130, -25)
-input_pickable = true
-monitorable = true
-monitoring = true
-script = ExtResource("3")
-nombre_instrumento = "tijeras"
-
-[node name="Visual" type="ColorRect" parent="Escenario/MesaInstrumentos/Tijeras"]
-offset_left = -15.0
-offset_top = -20.0
-offset_right = 15.0
-offset_bottom = 20.0
-color = Color(0.69, 0.722, 0.69, 1)
-
-[node name="Icono" type="Label" parent="Escenario/MesaInstrumentos/Tijeras/Visual"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 30.0
-offset_bottom = 40.0
-text = "✂️"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Nombre" type="Label" parent="Escenario/MesaInstrumentos/Tijeras"]
-offset_left = -30.0
-offset_top = 22.0
-offset_right = 30.0
-offset_bottom = 38.0
-theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
-theme_override_font_sizes/font_size = 10
-text = "Tijeras"
-horizontal_alignment = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Escenario/MesaInstrumentos/Tijeras"]
-shape = SubResource("SubResource_3")
-
-[node name="Aspirador" type="Area2D" parent="Escenario/MesaInstrumentos"]
-unique_name_in_owner = true
-position = Vector2(185, -28)
-input_pickable = true
-monitorable = true
-monitoring = true
-script = ExtResource("3")
-nombre_instrumento = "aspirador"
-
-[node name="Visual" type="ColorRect" parent="Escenario/MesaInstrumentos/Aspirador"]
-offset_left = -15.0
-offset_top = -20.0
-offset_right = 15.0
-offset_bottom = 20.0
-color = Color(0.69, 0.722, 0.69, 1)
-
-[node name="Icono" type="Label" parent="Escenario/MesaInstrumentos/Aspirador/Visual"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 30.0
-offset_bottom = 40.0
-text = "💧"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Nombre" type="Label" parent="Escenario/MesaInstrumentos/Aspirador"]
-offset_left = -30.0
-offset_top = 22.0
-offset_right = 30.0
-offset_bottom = 38.0
-theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
-theme_override_font_sizes/font_size = 10
-text = "Aspirador"
-horizontal_alignment = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Escenario/MesaInstrumentos/Aspirador"]
-shape = SubResource("SubResource_4")
-
-[node name="Retractor" type="Area2D" parent="Escenario/MesaInstrumentos"]
-unique_name_in_owner = true
-position = Vector2(235, -22)
-input_pickable = true
-monitorable = true
-monitoring = true
-script = ExtResource("3")
-nombre_instrumento = "retractor"
-
-[node name="Visual" type="ColorRect" parent="Escenario/MesaInstrumentos/Retractor"]
-offset_left = -15.0
-offset_top = -20.0
-offset_right = 15.0
-offset_bottom = 20.0
-color = Color(0.69, 0.722, 0.69, 1)
-
-[node name="Icono" type="Label" parent="Escenario/MesaInstrumentos/Retractor/Visual"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 30.0
-offset_bottom = 40.0
-text = "🗜️"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Nombre" type="Label" parent="Escenario/MesaInstrumentos/Retractor"]
-offset_left = -30.0
-offset_top = 22.0
-offset_right = 30.0
-offset_bottom = 38.0
-theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
-theme_override_font_sizes/font_size = 10
-text = "Retractor"
-horizontal_alignment = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Escenario/MesaInstrumentos/Retractor"]
-shape = SubResource("SubResource_5")
-
-[node name="Sutura" type="Area2D" parent="Escenario/MesaInstrumentos"]
-unique_name_in_owner = true
-position = Vector2(285, -20)
-input_pickable = true
-monitorable = true
-monitoring = true
-script = ExtResource("3")
-nombre_instrumento = "sutura"
-
-[node name="Visual" type="ColorRect" parent="Escenario/MesaInstrumentos/Sutura"]
-offset_left = -15.0
-offset_top = -20.0
-offset_right = 15.0
-offset_bottom = 20.0
-color = Color(0.69, 0.722, 0.69, 1)
-
-[node name="Icono" type="Label" parent="Escenario/MesaInstrumentos/Sutura/Visual"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 30.0
-offset_bottom = 40.0
-text = "🧵"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Nombre" type="Label" parent="Escenario/MesaInstrumentos/Sutura"]
-offset_left = -30.0
-offset_top = 22.0
-offset_right = 30.0
-offset_bottom = 38.0
-theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
-theme_override_font_sizes/font_size = 10
-text = "Sutura"
-horizontal_alignment = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Escenario/MesaInstrumentos/Sutura"]
-shape = SubResource("SubResource_6")
-
-[node name="MesaOperaciones" type="Node2D" parent="Escenario"]
-position = Vector2(900, 380)
-
-[node name="CuerpoMesa" type="ColorRect" parent="Escenario/MesaOperaciones"]
-offset_left = 0.0
-offset_top = 80.0
-offset_right = 500.0
-offset_bottom = 120.0
-color = Color(0.545, 0.435, 0.278, 1)
-
-[node name="PataMesaOp1" type="ColorRect" parent="Escenario/MesaOperaciones"]
-offset_left = 30.0
-offset_top = 120.0
-offset_right = 45.0
-offset_bottom = 320.0
-color = Color(0.45, 0.35, 0.25, 1)
-
-[node name="PataMesaOp2" type="ColorRect" parent="Escenario/MesaOperaciones"]
-offset_left = 455.0
-offset_top = 120.0
-offset_right = 470.0
-offset_bottom = 320.0
-color = Color(0.45, 0.35, 0.25, 1)
-
-[node name="Sabana" type="ColorRect" parent="Escenario/MesaOperaciones"]
-offset_left = 10.0
-offset_top = 30.0
-offset_right = 490.0
-offset_bottom = 80.0
-color = Color(0.91, 0.878, 0.816, 1)
-
-[node name="Paciente" type="ColorRect" parent="Escenario/MesaOperaciones"]
-offset_left = 100.0
-offset_top = 5.0
-offset_right = 400.0
-offset_bottom = 70.0
-color = Color(0.871, 0.722, 0.529, 1)
-
-[node name="OjoIzq" type="ColorRect" parent="Escenario/MesaOperaciones/Paciente"]
-offset_left = 60.0
-offset_top = 15.0
-offset_right = 68.0
-offset_bottom = 23.0
-color = Color(0.1, 0.1, 0.1, 1)
-
-[node name="OjoDer" type="ColorRect" parent="Escenario/MesaOperaciones/Paciente"]
-offset_left = 85.0
-offset_top = 15.0
-offset_right = 93.0
-offset_bottom = 23.0
-color = Color(0.1, 0.1, 0.1, 1)
-
-[node name="Boca" type="ColorRect" parent="Escenario/MesaOperaciones/Paciente"]
-offset_left = 65.0
-offset_top = 35.0
-offset_right = 88.0
-offset_bottom = 40.0
-color = Color(0.6, 0.3, 0.3, 1)
-
-[node name="ZonaPaciente" type="Area2D" parent="Escenario/MesaOperaciones"]
-unique_name_in_owner = true
-position = Vector2(250, 37)
+position = Vector2(350, 340)
 monitorable = true
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Escenario/MesaOperaciones/ZonaPaciente"]
 shape = SubResource("SubResource_7")
 
-[node name="Lampara" type="Node2D" parent="Escenario"]
-position = Vector2(1150, 0)
+[node name="SpritePaciente" type="Sprite2D" parent="Escenario/MesaOperaciones/ZonaPaciente"]
+unique_name_in_owner = true
+position = Vector2(0, 0)
+scale = Vector2(0.5, 0.5)
 
-[node name="BrazoLampara" type="Line2D" parent="Escenario/Lampara"]
-points = PackedVector2Array(0, 0, 0, 80, 30, 120)
-width = 6.0
-default_color = Color(0.5, 0.5, 0.5, 1)
-
-[node name="CabezoLampara" type="ColorRect" parent="Escenario/Lampara"]
-offset_left = -30.0
-offset_top = 120.0
-offset_right = 90.0
-offset_bottom = 160.0
-color = Color(0.6, 0.6, 0.55, 1)
-
-[node name="LuzLampara" type="ColorRect" parent="Escenario/Lampara"]
-offset_left = -10.0
-offset_top = 160.0
-offset_right = 70.0
-offset_bottom = 170.0
-color = Color(1.0, 0.98, 0.8, 0.6)
-
-[node name="Ventana" type="Node2D" parent="Escenario"]
-position = Vector2(1620, 150)
-
-[node name="MarcoVentana" type="ColorRect" parent="Escenario/Ventana"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 230.0
-offset_bottom = 250.0
-color = Color(0.42, 0.259, 0.149, 1)
-
-[node name="Vidrio" type="ColorRect" parent="Escenario/Ventana"]
-offset_left = 12.0
-offset_top = 12.0
-offset_right = 218.0
-offset_bottom = 238.0
-color = Color(0.529, 0.808, 0.922, 1)
-
-[node name="CruzVentana1" type="ColorRect" parent="Escenario/Ventana"]
-offset_left = 112.0
-offset_top = 0.0
-offset_right = 118.0
-offset_bottom = 250.0
-color = Color(0.42, 0.259, 0.149, 1)
-
-[node name="CruzVentana2" type="ColorRect" parent="Escenario/Ventana"]
-offset_left = 0.0
-offset_top = 122.0
-offset_right = 230.0
-offset_bottom = 128.0
-color = Color(0.42, 0.259, 0.149, 1)
-
-[node name="Lavamanos" type="Node2D" parent="Escenario"]
-position = Vector2(1700, 480)
-
-[node name="CuerpoLavamanos" type="ColorRect" parent="Escenario/Lavamanos"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 120.0
-offset_bottom = 80.0
-color = Color(0.85, 0.85, 0.82, 1)
-
-[node name="PileLavamanos" type="ColorRect" parent="Escenario/Lavamanos"]
-offset_left = 15.0
-offset_top = 10.0
-offset_right = 105.0
-offset_bottom = 50.0
-color = Color(0.75, 0.78, 0.8, 1)
-
-[node name="GrifoLavamanos" type="ColorRect" parent="Escenario/Lavamanos"]
-offset_left = 50.0
-offset_top = -25.0
-offset_right = 65.0
-offset_bottom = 10.0
-color = Color(0.6, 0.6, 0.55, 1)
-
-[node name="Dispensador" type="ColorRect" parent="Escenario"]
-offset_left = 1730.0
+[node name="MesaInstrumentos" type="TextureRect" parent="Escenario"]
+offset_left = 1350.0
 offset_top = 400.0
-offset_right = 1790.0
-offset_bottom = 470.0
-color = Color(0.8, 0.8, 0.78, 1)
+offset_right = 1850.0
+offset_bottom = 900.0
+texture = ExtResource("img_mesa_inst")
+expand_mode = 1
 
-[node name="ObjetoRandom" type="Node2D" parent="Escenario"]
-position = Vector2(650, 690)
+[node name="Bisturi" type="Area2D" parent="Escenario/MesaInstrumentos"]
+unique_name_in_owner = true
+position = Vector2(100, 150)
+input_pickable = true
+monitorable = true
+monitoring = true
+script = ExtResource("3")
+nombre_instrumento = "bisturi"
 
-[node name="TazaCafe" type="ColorRect" parent="Escenario/ObjetoRandom"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 25.0
-offset_bottom = 30.0
-color = Color(0.9, 0.85, 0.7, 1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Escenario/MesaInstrumentos/Bisturi"]
+shape = SubResource("SubResource_Inst")
 
-[node name="CafeLabel" type="Label" parent="Escenario/ObjetoRandom"]
-offset_left = -5.0
-offset_top = 32.0
-offset_right = 50.0
-offset_bottom = 48.0
-text = "☕"
-theme_override_font_sizes/font_size = 10
+[node name="Sprite" type="Sprite2D" parent="Escenario/MesaInstrumentos/Bisturi"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("img_bisturi")
 
-[node name="FrascoVerde" type="ColorRect" parent="Escenario"]
-offset_left = 60.0
-offset_top = 680.0
-offset_right = 90.0
-offset_bottom = 710.0
-color = Color(0.483, 0.659, 0.298, 1)
+[node name="Pinzas" type="Area2D" parent="Escenario/MesaInstrumentos"]
+unique_name_in_owner = true
+position = Vector2(250, 150)
+input_pickable = true
+monitorable = true
+monitoring = true
+script = ExtResource("3")
+nombre_instrumento = "pinzas"
 
-[node name="IconoFrasco" type="Label" parent="Escenario/FrascoVerde"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 30.0
-offset_bottom = 30.0
-text = "🧪"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Escenario/MesaInstrumentos/Pinzas"]
+shape = SubResource("SubResource_Inst")
+
+[node name="Sprite" type="Sprite2D" parent="Escenario/MesaInstrumentos/Pinzas"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("img_pinzas")
+
+[node name="Tijeras" type="Area2D" parent="Escenario/MesaInstrumentos"]
+unique_name_in_owner = true
+position = Vector2(400, 150)
+input_pickable = true
+monitorable = true
+monitoring = true
+script = ExtResource("3")
+nombre_instrumento = "tijeras"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Escenario/MesaInstrumentos/Tijeras"]
+shape = SubResource("SubResource_Inst")
+
+[node name="Sprite" type="Sprite2D" parent="Escenario/MesaInstrumentos/Tijeras"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("img_tijeras")
+
+[node name="Aspirador" type="Area2D" parent="Escenario/MesaInstrumentos"]
+unique_name_in_owner = true
+position = Vector2(100, 300)
+input_pickable = true
+monitorable = true
+monitoring = true
+script = ExtResource("3")
+nombre_instrumento = "aspirador"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Escenario/MesaInstrumentos/Aspirador"]
+shape = SubResource("SubResource_Inst")
+
+[node name="Sprite" type="Sprite2D" parent="Escenario/MesaInstrumentos/Aspirador"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("img_aspirador")
+
+[node name="Retractor" type="Area2D" parent="Escenario/MesaInstrumentos"]
+unique_name_in_owner = true
+position = Vector2(250, 300)
+input_pickable = true
+monitorable = true
+monitoring = true
+script = ExtResource("3")
+nombre_instrumento = "retractor"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Escenario/MesaInstrumentos/Retractor"]
+shape = SubResource("SubResource_Inst")
+
+[node name="Sprite" type="Sprite2D" parent="Escenario/MesaInstrumentos/Retractor"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("img_retractor")
+
+[node name="Sutura" type="Area2D" parent="Escenario/MesaInstrumentos"]
+unique_name_in_owner = true
+position = Vector2(400, 300)
+input_pickable = true
+monitorable = true
+monitoring = true
+script = ExtResource("3")
+nombre_instrumento = "sutura"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Escenario/MesaInstrumentos/Sutura"]
+shape = SubResource("SubResource_Inst")
+
+[node name="Sprite" type="Sprite2D" parent="Escenario/MesaInstrumentos/Sutura"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("img_sutura")
+
+[node name="Gasa" type="Area2D" parent="Escenario/MesaInstrumentos"]
+unique_name_in_owner = true
+position = Vector2(100, 400)
+input_pickable = true
+monitorable = true
+monitoring = true
+script = ExtResource("3")
+nombre_instrumento = "gasa"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Escenario/MesaInstrumentos/Gasa"]
+shape = SubResource("SubResource_Inst")
+
+[node name="Sprite" type="Sprite2D" parent="Escenario/MesaInstrumentos/Gasa"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("img_gasa")
+
+[node name="Monitor" type="TextureRect" parent="Escenario"]
+offset_left = 100.0
+offset_top = 150.0
+offset_right = 500.0
+offset_bottom = 450.0
+texture = ExtResource("img_monitor")
+expand_mode = 1
+
+[node name="MonitorECG" type="Node2D" parent="Escenario/Monitor"]
+unique_name_in_owner = true
+position = Vector2(50, 80)
+script = ExtResource("2")
+
+[node name="LineaECG" type="Line2D" parent="Escenario/Monitor/MonitorECG"]
+width = 3.0
+default_color = Color(0.2, 0.9, 0.3, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="LabelBPM" type="Label" parent="Escenario/Monitor/MonitorECG"]
+offset_left = 220.0
+offset_top = -60.0
+offset_right = 320.0
+offset_bottom = -20.0
+theme_override_colors/font_color = Color(0.2, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 24
+text = "72 BPM"
 
 [node name="UIOverlay" type="CanvasLayer" parent="."]
 layer = 10
@@ -659,6 +254,7 @@ theme_override_constants/margin_bottom = 30
 theme_override_constants/separation = 15
 
 [node name="TituloLabel" type="Label" parent="UIOverlay/ExpedientePopup/MargenContenido/VBoxContainer"]
+mouse_filter = 2
 text = "📋 EXPEDIENTE DEL PACIENTE"
 theme_override_colors/font_color = Color(0.76, 0.66, 0.3, 1)
 theme_override_font_sizes/font_size = 28
@@ -667,11 +263,13 @@ horizontal_alignment = 1
 [node name="Separador1" type="HSeparator" parent="UIOverlay/ExpedientePopup/MargenContenido/VBoxContainer"]
 
 [node name="NombreLabel" type="Label" parent="UIOverlay/ExpedientePopup/MargenContenido/VBoxContainer"]
+mouse_filter = 2
 text = "Nombre: Roberto Fernández Mamani"
 theme_override_colors/font_color = Color(0.95, 0.9, 0.8, 1)
 theme_override_font_sizes/font_size = 22
 
 [node name="DatosLabel" type="RichTextLabel" parent="UIOverlay/ExpedientePopup/MargenContenido/VBoxContainer"]
+mouse_filter = 2
 custom_minimum_size = Vector2(0, 250)
 text = "Edad: 47 años
 Peso: 82 kg
@@ -682,6 +280,7 @@ theme_override_colors/default_color = Color(0.85, 0.82, 0.75, 1)
 theme_override_font_sizes/normal_font_size = 20
 
 [node name="NotaLabel" type="Label" parent="UIOverlay/ExpedientePopup/MargenContenido/VBoxContainer"]
+mouse_filter = 2
 text = "⚠️ Nota del doctor anterior: \"NO dejar que el practicante haga esto solo.\""
 theme_override_colors/font_color = Color(0.9, 0.6, 0.3, 1)
 theme_override_font_sizes/font_size = 16
@@ -704,6 +303,7 @@ offset_bottom = 520.0
 theme_override_styles/panel = SubResource("SubResource_10")
 
 [node name="TextoAlerta" type="Label" parent="UIOverlay/AlertaRoja"]
+mouse_filter = 2
 text = "⚠️ ¡COMPLICACIÓN!"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 36
@@ -711,6 +311,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="InstrumentoActivo" type="ColorRect" parent="UIOverlay"]
+mouse_filter = 2
 unique_name_in_owner = true
 visible = false
 offset_left = 0.0
@@ -720,6 +321,7 @@ offset_bottom = 40.0
 color = Color(0.69, 0.722, 0.69, 1)
 
 [node name="TimerDisplay" type="Label" parent="UIOverlay"]
+mouse_filter = 2
 unique_name_in_owner = true
 offset_left = 1650.0
 offset_top = 20.0
@@ -731,6 +333,7 @@ theme_override_font_sizes/font_size = 36
 horizontal_alignment = 2
 
 [node name="InfoRango" type="Label" parent="UIOverlay"]
+mouse_filter = 2
 unique_name_in_owner = true
 offset_left = 20.0
 offset_top = 20.0
