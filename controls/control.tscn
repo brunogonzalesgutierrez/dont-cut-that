@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dv3xx8u4vetc6"]
 
 [ext_resource type="Texture2D" uid="uid://cvrsrhpgh1x1o" path="res://media/menu/fondo.png" id="1_u4dsd"]
+[ext_resource type="Script" uid="uid://pd4v87eb55i8" path="res://controls/continuar.gd" id="2_4ugr7"]
 [ext_resource type="Script" uid="uid://cq0xcm7jvlmy1" path="res://controls/salir.gd" id="2_kb5l1"]
 
 [node name="Control" type="Control" unique_id=382212308]
@@ -40,6 +41,7 @@ offset_bottom = 572.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 22
 text = "Continuar"
+script = ExtResource("2_4ugr7")
 
 [node name="ajustes" type="Button" parent="TextureRect" unique_id=1050773604]
 layout_mode = 0
